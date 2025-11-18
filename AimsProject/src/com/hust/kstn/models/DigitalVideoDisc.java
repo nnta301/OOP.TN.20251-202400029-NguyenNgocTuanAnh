@@ -6,14 +6,18 @@ public class DigitalVideoDisc {
     private String director;
     private int length;
     private double cost;
+    private static int nbDigitalVideoDiscs = 0;
+    private int id;
 
     // Constructor với tham số title
     public DigitalVideoDisc(String title) {
+        this.id = ++nbDigitalVideoDiscs;
         this.title = title;
     }
 
     // Constructor với category, title và cost
     public DigitalVideoDisc(String category, String title, double cost) {
+        this.id = ++nbDigitalVideoDiscs;
         this.category = category;
         this.title = title;
         this.cost = cost;
@@ -21,6 +25,7 @@ public class DigitalVideoDisc {
 
     // Constructor với director, category, title và cost
     public DigitalVideoDisc(String director, String category, String title, double cost) {
+        this.id = ++nbDigitalVideoDiscs;
         this.director = director;
         this.category = category;
         this.title = title;
@@ -29,6 +34,7 @@ public class DigitalVideoDisc {
 
     // Constructor với tất cả các thuộc tính
     public DigitalVideoDisc(String title, String category, String director, int length, double cost) {
+        this.id = ++nbDigitalVideoDiscs;
         this.title = title;
         this.category = category;
         this.director = director;
@@ -55,6 +61,10 @@ public class DigitalVideoDisc {
 
     public double getCost() {
         return cost;
+    }
+
+    public int getId() {
+        return id;
     }
 
     // Setters
