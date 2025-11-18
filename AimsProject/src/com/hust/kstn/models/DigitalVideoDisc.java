@@ -1,6 +1,6 @@
 package com.hust.kstn.models;
 
-public class DigitalVideoDisc extends Media {
+public class DigitalVideoDisc extends Disc {
     private String director;
     private int length;
 
