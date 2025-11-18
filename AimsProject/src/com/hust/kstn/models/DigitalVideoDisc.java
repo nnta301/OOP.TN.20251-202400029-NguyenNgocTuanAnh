@@ -90,10 +90,9 @@ public class DigitalVideoDisc {
 
     @Override
     public String toString() {
-        return "[Title]: " + title + 
-               " | [Category]: " + (category != null ? category : "N/A") +
-               " | [Director]: " + (director != null ? director : "N/A") +
-               " | [Length]: " + length + " mins" +
-               " | [Cost]: $" + cost;
+        String t = title != null ? title : "N/A";
+        String c = category != null ? category : "N/A";
+        String d = director != null ? director : "N/A";
+        return "DVD[" + id + "] - " + t + " - " + cost + " - " + length + " - " + c + " - " + d;
     }
 }
