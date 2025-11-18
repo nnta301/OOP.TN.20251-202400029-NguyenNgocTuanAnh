@@ -89,14 +89,26 @@ public class Cart {
 
     // In ra thông tin giỏ hàng
     public void print() {
-        System.out.println("=== Total items in cart: " + qtyOrdered + " ===");
-        System.out.println("===== All items in cart =====");
+        System.out.println("======================= THE CURRENT CART =======================");
+        System.out.print("Total items: " + qtyOrdered);
+
+        if (qtyOrdered == 0) {
+            System.out.println(" - The cart is empty");
+            System.out.println("================================================================");
+            return;
+        }
+
+        System.out.println();
+        // Print all items in one line separated by " - " as requested
         for (int i = 0; i < qtyOrdered; i++) {
             DigitalVideoDisc item = itemsInCart[i];
-            System.out.println((i + 1) + ". " + item.toString());
+            System.out.print(item.toString());
+            if (i < qtyOrdered - 1) System.out.print(" - ");
         }
-        System.out.println("Total cost: $" + calculateTotalCost());
-        System.out.println("===============================");
+
+        System.out.println();
+        System.out.println("Subtotal: " + calculateTotalCost() + "$");
+        System.out.println("================================================================");
     }
 
     // Kiểm tra giỏ hàng rỗng
