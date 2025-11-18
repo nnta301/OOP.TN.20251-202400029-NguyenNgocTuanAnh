@@ -1,0 +1,28 @@
+1. Chuyện gì xảy ra khi thêm addDVD(DigitalVideoDisc... discs)?
+
+- Trong Cart đã có:
+  + addDVD(DigitalVideoDisc disc)
+  + addDVD(DigitalVideoDisc disc1, DigitalVideoDisc disc2)
+  + addDVD(DigitalVideoDisc[] discs)
+- Khi thêm:
+  + addDVD(DigitalVideoDisc... discs)
+- Trình biên dịch báo lỗi: trùng chữ ký với addDVD(DigitalVideoDisc[] discs).
+
+2. Tại sao?
+
+- Varargs (DigitalVideoDisc... discs) sau khi biên dịch tương đương mảng (DigitalVideoDisc[] discs).
+- Hai hàm:
+  + addDVD(DigitalVideoDisc[] discs)
+  + addDVD(DigitalVideoDisc... discs)
+  có cùng chữ ký ⇒ Java không cho overload.
+
+3. Cách xử lý em chọn
+
+- Giữ:
+  + addDVD(DigitalVideoDisc disc)
+  + addDVD(DigitalVideoDisc... discs)   // dùng varargs làm hàm tổng quát
+- Bỏ:
+  + addDVD(DigitalVideoDisc[] discs)
+- Lý do:
+  + Varargs bao hết mọi trường hợp: 1 DVD, 2 DVD, nhiều DVD, hoặc truyền cả mảng.
+  + Tránh trùng lặp logic giữa phiên bản mảng và varargs.
