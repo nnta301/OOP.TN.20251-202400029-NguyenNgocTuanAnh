@@ -1,0 +1,18 @@
+# IDE files
+.vscode/
+.idea/
+
+# build artifacts
+bin/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# logs
+*.log
+
+# temporary files
+*.tmp
+*~

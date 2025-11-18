@@ -1,0 +1,59 @@
+1. Vì sao swap(s1, s2) không đổi tên hai học sinh? Java là pass by value hay pass by reference?
+
+Mã:
+
+public static void swap(Object o1, Object o2) {
+    Object tmp = o1;
+    o1 = o2;
+    o2 = tmp;
+}
+
+- Khi gọi swap(s1, s2):
+  + Giá trị “tham chiếu” của s1 được copy vào o1.
+  + Giá trị “tham chiếu” của s2 được copy vào o2.
+- Bên trong swap chỉ đổi o1, o2 (bản sao) ⇒ s1, s2 ở main không đổi.
+- Java luôn **pass by value**:
+  + Với object: truyền bản sao của tham chiếu, không phải biến gốc.
+
+2. Làm sao để “swap thật” thông tin giữa hai Student?
+
+Cách 1: Hoán đổi dữ liệu bên trong 2 object.
+
+public static void swapStudentData(Student s1, Student s2) {
+    String tmpName = s1.getName();
+    s1.setName(s2.getName());
+    s2.setName(tmpName);
+
+    int tmpId = s1.getStudentId();
+    s1.setStudentId(s2.getStudentId());
+    s2.setStudentId(tmpId);
+}
+
+- s1, s2 vẫn trỏ cùng object như cũ, nhưng field bên trong đã bị đổi.
+
+Cách 2: Dùng wrapper (StudentHolder).
+
+class StudentHolder {
+    public Student value;
+    public StudentHolder(Student value) { this.value = value; }
+}
+
+public static void swap(StudentHolder h1, StudentHolder h2) {
+    Student tmp = h1.value;
+    h1.value = h2.value;
+    h2.value = tmp;
+}
+
+- Java vẫn pass by value, nhưng ta đổi field value bên trong wrapper nằm trên heap ⇒ hiệu ứng “swap tham chiếu”.
+
+3. Tóm tắt stack/heap
+
+- Trước swap:
+  + s1 → Student#1, s2 → Student#2 (trên heap).
+- Trong swap:
+  + o1, o2 là bản sao tham chiếu (frame mới trên stack).
+  + Đổi o1, o2 không làm đổi s1, s2.
+- Sau swap:
+  + Frame swap bị pop, s1, s2 vẫn giữ tham chiếu cũ ⇒ name không đổi.
+
+Kết luận: Java luôn pass by value; để “swap”, phải đổi dữ liệu object hoặc dùng wrapper.
