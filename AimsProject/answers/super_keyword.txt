@@ -1,0 +1,35 @@
+Ví dụ lớp Book:
+
+public Book(String title, double cost, String category,
+            int numOfTokens, List<BookAuthor> authors) {
+    super(title, cost, category);
+    this.numOfTokens = numOfTokens;
+    this.authors = authors;
+}
+
+@Override
+public String toString() {
+    return super.toString()
+           + "[" + this.numOfTokens + "]"
+           + "\nAuthors: " + this.authors;
+}
+
+Ý nghĩa super trong ví dụ:
+
+1. Trong constructor: super(title, cost, category);
+
+- Gọi constructor lớp cha (Media).
+- Khởi tạo các thuộc tính chung: id, title, cost, category, tăng nbMedias…
+- Tránh lặp lại code khởi tạo chung ở từng lớp con.
+
+2. Trong toString(): super.toString()
+
+- Gọi toString() của Media để in phần thông tin chung.
+- Lớp con (Book) chỉ nối thêm phần riêng (numOfTokens, authors).
+- Nếu sau này đổi format chung, chỉ sửa trong Media.toString() là đủ.
+
+3. Kết luận
+
+- super(...) dùng để tận dụng logic khởi tạo chung của lớp cha.
+- super.toString() dùng để tái sử dụng phần in chung rồi bổ sung phần riêng.
+- Giúp code gọn, ít trùng lặp, dễ bảo trì hơn.
