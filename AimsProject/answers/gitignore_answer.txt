@@ -1,0 +1,31 @@
+1. Vì sao cần ignore .settings, bin, .classpath, .project? Nếu không thì sao?
+
+- Đây là file/thư mục do IDE + build sinh ra
+
+- Nếu không ignore:
+  + Repo nặng, nhiều file “rác”.
+  + Dễ xung đột khi nhiều người dùng IDE khác nhau.
+  + Dự án bị “khóa” vào một IDE cụ thể.
+
+2. Nếu dùng IDE khác (IntelliJ, VS Code) thì nên ignore gì?
+
+- IntelliJ:
+  + .idea/
+  + *.iml
+  + out/, build/ (output build)
+- VS Code:
+  + .vscode/
+  + bin/, build/, target/ (tùy công cụ build)
+
+3. Đã lỡ commit rồi, muốn Git ngừng theo dõi mà không xóa file thì làm sao?
+
+- Thêm các đường dẫn vào .gitignore
+
+- Gỡ khỏi index (nhưng giữ trên máy):
+  git rm -r --cached .settings bin .classpath .project
+
+- Commit:
+  git commit -m "Stop tracking IDE-generated and build files"
+
+- Push (nếu có remote):
+  git push
